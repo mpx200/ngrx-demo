@@ -1,0 +1,9 @@
+***************---install ngrx ---***************
+
+yarn add @ngrx/store --save
+yarn add @ngrx/router-store --save
+yarn add @ngrx/store-devtools --save
+yarn add @ngrx/effects --save
+
+
+yarn add --save @angular/material @angular/cdk
