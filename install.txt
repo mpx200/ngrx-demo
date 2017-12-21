@@ -5,5 +5,8 @@ yarn add @ngrx/router-store --save
 yarn add @ngrx/store-devtools --save
 yarn add @ngrx/effects --save
 
-
 yarn add --save @angular/material @angular/cdk
+
+ng g c meet-up
+ng g c participants
+
