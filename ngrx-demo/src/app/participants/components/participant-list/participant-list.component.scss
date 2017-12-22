@@ -1,0 +1,39 @@
+.mat-list-item {
+  max-width: 400px;
+  margin: auto;
+}
+
+.mat-list-item {
+  /deep/ .mat-list-text {
+    flex-direction: row !important;
+  }
+
+  .mat-list-avatar {
+    margin-right: 8px;
+    width: 70px;
+    height: 50px;
+    border-radius: 0;
+  }
+
+  .mat-list-option-content {
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .mat-list-option-content h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .mat-list-option-content p {
+    margin: 0;
+  }
+}
+
+.mat-selection-list-actions {
+  text-align: right;
+  min-height: 28px;
+  i {
+    cursor: pointer;
+  }
+}

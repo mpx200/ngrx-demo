@@ -1,0 +1,7 @@
+<p>
+  Dobrodosli na ngrx meetup!
+</p>
+<app-participant-list [participants]="participants"
+  (deleteParticipants)="onDeleteParticipant($event)"
+  (editParticipants)="onEditParticipant($event)">
+</app-participant-list>

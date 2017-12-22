@@ -12,21 +12,24 @@ export class ParticipantsService {
       surname: 'Stepic',
       company: 'Comtrade',
       imageSrc: 'd_silhouette_Batman.jpg',
-      location: 'Kragujevac'
+      location: 'Kragujevac',
+      selected: false
     },
     {
       name: 'Borislav',
       surname: 'Kolak',
       company: 'Comtrade',
       imageSrc: 'deadpool.png',
-      location: 'Kragujevac'
+      location: 'Kragujevac',
+      selected: false
     },
     {
       name: 'Ivan',
       surname: 'Miletic',
       company: 'Comtrade',
       imageSrc: 'playboy.png',
-      location: 'Cacak'
+      location: 'Cacak',
+      selected: false
     }
   ];
 
@@ -39,6 +42,17 @@ export class ParticipantsService {
         observer.next(this.hardCodeParticipants);
         observer.complete();
       }, 2000);
+    });
+  }
+
+  public deleteParticipant(participant: Participants): Observable<Participants[]> {
+    return Observable.create(observer => {
+      setTimeout(() => {
+        const deletedIndex = this.hardCodeParticipants.indexOf(participant);
+        this.hardCodeParticipants.splice(deletedIndex, 1);
+        observer.next(this.hardCodeParticipants);
+        observer.complete();
+      }, 0);
     });
   }
 }

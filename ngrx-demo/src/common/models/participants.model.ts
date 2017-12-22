@@ -5,5 +5,6 @@ export interface Participants {
   location: string;
   company: string;
   imageSrc: string;
+  selected?: boolean;
 }
 
