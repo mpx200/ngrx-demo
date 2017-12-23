@@ -26,6 +26,7 @@ export class ParticipantsEditComponent implements OnInit, OnDestroy {
   private sub: any;
   id: number;
   selectedParticipant: Participant;
+
   ngOnInit() {
     this.createForm();
     this.sub = this.route.params.subscribe(params => {

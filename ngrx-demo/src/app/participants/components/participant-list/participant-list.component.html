@@ -1,4 +1,4 @@
-<mat-list #part>
+<mat-list *ngIf="!loading" #part>
   <mat-list-item *ngFor="let participant of participants">
     <img matListAvatar [src]="'assets/images/' + participant.imageSrc">
     <div class="mat-list-option-content">
@@ -14,3 +14,6 @@
     </div>
   </mat-list-item>
 </mat-list>
+
+<mat-progress-spinner *ngIf="loading" class="example-margin" [color]="'primary'" [mode]="'indeterminate'" [value]="50">
+</mat-progress-spinner>

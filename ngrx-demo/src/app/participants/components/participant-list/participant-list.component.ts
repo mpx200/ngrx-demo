@@ -19,6 +19,7 @@ export class ParticipantsListComponent implements OnInit {
   constructor() {}
 
   @Input() public participants: Participant[];
+  @Input() public loading: boolean;
   @Output() public deleteParticipants = new EventEmitter();
   @Output() public editParticipants = new EventEmitter();
 

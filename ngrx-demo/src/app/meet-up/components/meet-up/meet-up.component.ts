@@ -8,11 +8,13 @@ import { Participant, ParticipantsService } from '../../../../common';
 })
 export class MeetUpComponent implements OnInit {
   constructor(private participantService: ParticipantsService) {}
-
+  public loadingData = false;
   public participants: Participant[];
   ngOnInit() {
+    this.loadingData = true;
     this.participantService.getParticipants().subscribe(p => {
       this.participants = p;
+      this.loadingData = false;
     });
   }
 
@@ -24,5 +26,4 @@ export class MeetUpComponent implements OnInit {
       this.participants = p;
     });
   }
-
 }

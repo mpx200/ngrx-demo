@@ -1,4 +1,5 @@
 <app-participant-list [participants]="participants"
  (deleteParticipants)="onDeleteParticipant($event)"
-  (editParticipants)="onEditParticipant($event)">
+  (editParticipants)="onEditParticipant($event)"
+  [loading]="loadingData">
 </app-participant-list>

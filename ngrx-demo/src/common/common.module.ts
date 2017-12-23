@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,13 +19,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatCheckboxModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     RouterModule,
     MatListModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     FormsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
