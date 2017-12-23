@@ -11,6 +11,12 @@ import { NgRxMeetupCommonModule } from '../common';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.router';
 import { HttpClientModule } from '@angular/common/http';
+import {
+  RouterStateSerializer,
+  StoreRouterConnectingModule
+} from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, reducers } from './store/reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule,
     NgRxMeetupCommonModule
   ],
   providers: [],
