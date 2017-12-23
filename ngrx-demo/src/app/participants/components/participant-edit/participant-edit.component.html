@@ -1,3 +1,33 @@
-<p>
-  edit works!
-</p>
+<form class="participant-form" novalidate [formGroup]="participantGroup" (ngSubmit)="onSubmit(participantGroup)">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Ime" formControlName="name">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Prezime" formControlName="surname">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Lokacija" formControlName="location">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Kompanija" formControlName="company">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <button mat-raised-button color="primary" type="submit">Save</button>
+</form>

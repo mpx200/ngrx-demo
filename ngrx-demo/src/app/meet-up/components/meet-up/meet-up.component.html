@@ -1,10 +1,4 @@
-<div class="main-port">
-  <h1>
-    Dobrodosli na ngrx meetup!
-  </h1>
-  <img width="100" alt="Angular Logo" src="https://julienrenaux.fr/talks-src/img/ngrx-store-logo.png">
-
-  <app-participant-list [participants]="participants"
-   (deleteParticipants)="onDeleteParticipant($event)" (editParticipants)="onEditParticipant($event)">
-  </app-participant-list>
-</div>
+<app-participant-list [participants]="participants"
+ (deleteParticipants)="onDeleteParticipant($event)"
+  (editParticipants)="onEditParticipant($event)">
+</app-participant-list>

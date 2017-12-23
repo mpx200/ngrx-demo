@@ -2,41 +2,41 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from './../../environments/environment';
-import { Participants } from '../models/';
+import { Participant } from '../models/';
 
 @Injectable()
 export class ParticipantsService {
-  hardCodeParticipants: Participants[] = [
+  hardCodeParticipants: Participant[] = [
     {
+      id: 1,
       name: 'Ivan',
       surname: 'Stepic',
       company: 'Comtrade',
       imageSrc: 'd_silhouette_Batman.jpg',
-      location: 'Kragujevac',
-      selected: false
+      location: 'Kragujevac'
     },
     {
+      id: 2,
       name: 'Borislav',
       surname: 'Kolak',
       company: 'Comtrade',
       imageSrc: 'deadpool.png',
-      location: 'Kragujevac',
-      selected: false
+      location: 'Kragujevac'
     },
     {
+      id: 3,
       name: 'Ivan',
       surname: 'Miletic',
       company: 'Comtrade',
       imageSrc: 'playboy.png',
-      location: 'Cacak',
-      selected: false
+      location: 'Cacak'
     }
   ];
 
   constructor() {}
   // constructor(private http: HttpClient) {}
 
-  public getParticipants(): Observable<Participants[]> {
+  public getParticipants(): Observable<Participant[]> {
     return Observable.create(observer => {
       setTimeout(() => {
         observer.next(this.hardCodeParticipants);
@@ -45,7 +45,9 @@ export class ParticipantsService {
     });
   }
 
-  public deleteParticipant(participant: Participants): Observable<Participants[]> {
+  public deleteParticipant(
+    participant: Participant
+  ): Observable<Participant[]> {
     return Observable.create(observer => {
       setTimeout(() => {
         const deletedIndex = this.hardCodeParticipants.indexOf(participant);
@@ -53,6 +55,28 @@ export class ParticipantsService {
         observer.next(this.hardCodeParticipants);
         observer.complete();
       }, 0);
+    });
+  }
+
+  public getParticipant(id: number): Observable<Participant> {
+    return Observable.create(observer => {
+      setTimeout(() => {
+        const part = this.hardCodeParticipants.filter(p => p.id === id);
+        observer.next(part[0]);
+        observer.complete();
+      }, 500);
+    });
+  }
+
+  public saveParticipant(participant: Participant): Observable<Participant> {
+    return Observable.create(observer => {
+      setTimeout(() => {
+        const index = this.hardCodeParticipants.findIndex(p => p.id === participant.id);
+        this.hardCodeParticipants[index] = participant;
+        console.log(this.hardCodeParticipants);
+        observer.next(participant);
+        observer.complete();
+      }, 500);
     });
   }
 }

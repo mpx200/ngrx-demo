@@ -1,36 +1,16 @@
-<!-- <mat-selection-list #part>
-  <div class="mat-selection-list-actions">
-    <i *ngIf="part.selectedOptions.selected.length===1" class="material-icons">&#xE3C9;</i>
-    <i (click)="onDeleteParticipants(part.selectedOptions)" *ngIf="part.selectedOptions.selected.length" class="material-icons">&#xE16C;</i>
-  </div>
-  <mat-list-option *ngFor="let participant of participants">
-    <img matListAvatar [src]="'assets/images/' + participant.imageSrc">
-    <div class="mat-list-option-content">
-      <h3 matLine> {{participant.name}} {{participant.surname}} </h3>
-      <p matLine>
-        <span> {{participant.location}} </span>
-        <span class="demo-2"> -- {{participant.company}} </span>
-      </p>
-    </div>
-
-  </mat-list-option>
-</mat-selection-list> -->
-
-
 <mat-list #part>
-
   <mat-list-item *ngFor="let participant of participants">
     <img matListAvatar [src]="'assets/images/' + participant.imageSrc">
     <div class="mat-list-option-content">
       <h3 matLine> {{participant.name}} {{participant.surname}} </h3>
       <p matLine>
         <span> {{participant.location}} </span>
-        <span class="demo-2"> -- {{participant.company}} </span>
+        <span class="demo-2"> - {{participant.company}} </span>
       </p>
     </div>
     <div class="mat-selection-list-actions">
-        <i (click)="onEditParticipants(participant)" class="material-icons">&#xE3C9;</i>
-        <i (click)="onDeleteParticipants(participant)" class="material-icons">&#xE16C;</i>
-      </div>
+      <i routerLink="/meetup/part/{{participant.id}}" class="material-icons">&#xE3C9;</i>
+      <i (click)="onDeleteParticipants(participant)" class="material-icons">&#xE16C;</i>
+    </div>
   </mat-list-item>
 </mat-list>
