@@ -30,7 +30,7 @@ import * as fromParticipants from './participant.reducer';
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
-  participants: fromParticipants.ParticipantsState;
+  participantsReducer: fromParticipants.ParticipantsState;
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
@@ -40,7 +40,7 @@ export interface State {
  * and the current or initial state and return a new immutable state.
  */
 export const reducers: ActionReducerMap<State> = {
-  participants: fromParticipants.reducer,
+  participantsReducer: fromParticipants.reducer,
   routerReducer: fromRouter.routerReducer
 };
 
@@ -62,3 +62,19 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger, storeFreeze]
   : [];
+
+export const getParticipantsState = (state: State): fromParticipants.ParticipantsState =>
+state.participantsReducer;
+
+export const getAllParticipants = createSelector(
+  getParticipantsState,
+  state => state.items
+);
+export const getParticipantsLoading = createSelector(
+  getParticipantsState,
+  state => state.loading
+);
+export const getParticipantsError = createSelector(
+  getParticipantsState,
+  state => state.error
+);

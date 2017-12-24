@@ -19,7 +19,8 @@ import {
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { metaReducers, reducers } from './store/reducers';
+import { metaReducers, reducers, ParticipantsEffects } from './store';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,7 @@ import { metaReducers, reducers } from './store/reducers';
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ParticipantsEffects]),
 
     NgRxMeetupCommonModule
   ],
