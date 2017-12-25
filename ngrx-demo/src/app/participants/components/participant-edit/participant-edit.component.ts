@@ -17,7 +17,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './participant-edit.component.html',
   styleUrls: ['./participant-edit.component.scss']
 })
-export class ParticipantsEditComponent implements OnInit, OnDestroy {
+export class ParticipantsEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
