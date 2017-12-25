@@ -1,4 +1,4 @@
-<form class="participant-form" novalidate [formGroup]="participantGroup" (ngSubmit)="onSubmit(participantGroup)">
+<form *ngIf="selectedParticipant$ | async" class="participant-form" novalidate [formGroup]="participantGroup" (ngSubmit)="onSubmit(participantGroup)">
   <table class="example-full-width" cellspacing="0">
     <tr>
       <td>

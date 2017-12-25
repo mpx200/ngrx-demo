@@ -1,5 +1,6 @@
 import * as fromRoot from '../reducers/';
 import { createSelector } from '@ngrx/store';
+import { Participant } from '../../../common/index';
 
 export const getAllParticipants = createSelector(
   fromRoot.getParticipantsState,
@@ -12,4 +13,15 @@ export const getParticipantsLoading = createSelector(
 export const getParticipantsError = createSelector(
   fromRoot.getParticipantsState,
   state => state.error
+);
+
+export const getSelectedParticipant = createSelector(
+  getAllParticipants,
+  fromRoot.getRouterState,
+  (items, router): Participant => {
+    const aaa = items.find(
+      s => s.id === Number(router.state.params.participantId)
+    );
+    return aaa;
+  }
 );

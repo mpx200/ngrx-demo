@@ -5,9 +5,12 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
-import { Participant, ParticipantsService } from '../../../../common/index';
+import { Participant } from '../../../../common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitter } from 'events';
+import * as fromStore from '../../../store';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-participant-edit',
@@ -18,23 +21,25 @@ export class ParticipantsEditComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private participantService: ParticipantsService,
+    private store: Store<fromStore.State>,
     private router: Router
   ) {}
 
   participantGroup: FormGroup;
   private sub: any;
   id: number;
+  selectedParticipant$: Observable<Participant>;
   selectedParticipant: Participant;
 
   ngOnInit() {
     this.createForm();
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params['participantId'];
-      this.participantService.getParticipant(this.id).subscribe(p => {
-        this.selectedParticipant = p;
-        this.setValueForm(p);
-      });
+    this.selectedParticipant$ = this.store.select(
+      fromStore.getSelectedParticipant
+    );
+    this.selectedParticipant$.subscribe(p => {
+      this.selectedParticipant = p;
+      this.setValueForm(this.selectedParticipant);
+      console.log('vratio slektovanog');
     });
   }
 
@@ -59,13 +64,13 @@ export class ParticipantsEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit({ value, valid }: { value: Participant; valid: boolean }) {
-    value.id = this.selectedParticipant.id;
-    value.imageSrc = this.selectedParticipant.imageSrc;
-    this.participantService.saveParticipant(value).subscribe(p => {
-      console.log(p);
-      console.log('edited');
-      this.router.navigate([`/meetup`]);
-    });
+    // value.id = this.selectedParticipant.id;
+    // value.imageSrc = this.selectedParticipant.imageSrc;
+    // this.participantService.saveParticipant(value).subscribe(p => {
+    //   console.log(p);
+    //   console.log('edited');
+    //   this.router.navigate([`/meetup`]);
+    // });
   }
 
   ngOnDestroy() {

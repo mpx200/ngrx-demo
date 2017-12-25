@@ -6,7 +6,7 @@ import { Participant } from '../models/';
 
 @Injectable()
 export class ParticipantsService {
-  hardCodeParticipants: Participant[] = [
+  public hardCodeParticipants: Participant[] = [
     {
       id: 1,
       name: 'Ivan',
@@ -69,10 +69,19 @@ export class ParticipantsService {
   }
 
   public saveParticipant(participant: Participant): Observable<Participant> {
+    console.log(participant);
+    console.log(this.hardCodeParticipants);
     return Observable.create(observer => {
       setTimeout(() => {
-        const index = this.hardCodeParticipants.findIndex(p => p.id === participant.id);
-        this.hardCodeParticipants[index] = participant;
+        this.hardCodeParticipants.forEach(p => {
+          if (p.id === participant.id) {
+            p.company = participant.company;
+            p.name = participant.name;
+            p.surname = participant.surname;
+            p.location = participant.location;
+          }
+        });
+
         console.log(this.hardCodeParticipants);
         observer.next(participant);
         observer.complete();

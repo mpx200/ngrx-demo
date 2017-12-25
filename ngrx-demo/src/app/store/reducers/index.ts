@@ -66,3 +66,17 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 export const getParticipantsState = (state: State): fromParticipants.ParticipantsState =>
 state.participantsReducer;
 
+export const getRouterState = (state: State) => state.routerReducer;
+
+export const getRouterUrl = createSelector(
+  getRouterState,
+  (state: fromRouter.RouterReducerState<RouterStateUrl>) =>
+    state && state.state.url
+);
+
+export const getRouterParams = createSelector(
+  getRouterState,
+  (state: fromRouter.RouterReducerState<RouterStateUrl>) =>
+    state && state.state.params
+);
+
