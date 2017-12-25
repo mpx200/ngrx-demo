@@ -66,15 +66,3 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 export const getParticipantsState = (state: State): fromParticipants.ParticipantsState =>
 state.participantsReducer;
 
-export const getAllParticipants = createSelector(
-  getParticipantsState,
-  state => state.items
-);
-export const getParticipantsLoading = createSelector(
-  getParticipantsState,
-  state => state.loading
-);
-export const getParticipantsError = createSelector(
-  getParticipantsState,
-  state => state.error
-);

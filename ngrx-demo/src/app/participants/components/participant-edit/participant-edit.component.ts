@@ -30,7 +30,7 @@ export class ParticipantsEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = +params['participantId'];
       this.participantService.getParticipant(this.id).subscribe(p => {
         this.selectedParticipant = p;
         this.setValueForm(p);
