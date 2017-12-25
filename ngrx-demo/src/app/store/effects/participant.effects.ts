@@ -3,7 +3,6 @@ import { Effect, Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import * as fromActions from '../actions';
-// import { Location } from '@angular/common';
 
 import {
   catchError,
@@ -14,12 +13,6 @@ import {
 } from 'rxjs/operators';
 
 import { ParticipantsService, Participant } from '../../../common';
-import { ParticipantsEditComponent } from '../../participants/index';
-
-// export const SEARCH_DEBOUNCE = new InjectionToken<number>('Search Debounce');
-// export const SEARCH_SCHEDULER = new InjectionToken<Scheduler>(
-//   'Search Scheduler'
-// );
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -55,8 +48,6 @@ export class ParticipantsEffects {
 
   constructor(
     private actions$: Actions<{ type: any; payload: any }>,
-    // private http: HttpClient,
-    // private location: Location,
     private participantsService: ParticipantsService
   ) {}
 }
