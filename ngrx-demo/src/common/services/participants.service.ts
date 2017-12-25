@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from './../../environments/environment';
 import { Participant } from '../models/';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class ParticipantsService {
@@ -38,11 +39,9 @@ export class ParticipantsService {
 
   public getParticipants(): Observable<Participant[]> {
     return Observable.create(observer => {
-      setTimeout(() => {
-        observer.next(this.hardCodeParticipants);
-        observer.complete();
-      }, 2000);
-    });
+      observer.next(this.hardCodeParticipants);
+      observer.complete();
+    }).delay(2000);
   }
 
   public deleteParticipant(
@@ -60,23 +59,19 @@ export class ParticipantsService {
 
   public getParticipant(id: number): Observable<Participant> {
     return Observable.create(observer => {
-      setTimeout(() => {
-        const part = this.hardCodeParticipants.filter(p => p.id === id);
-        observer.next(part[0]);
-        observer.complete();
-      }, 500);
-    });
+      const part = this.hardCodeParticipants.filter(p => p.id === id);
+      observer.next(part[0]);
+      observer.complete();
+    }).delay(500);
   }
 
   public saveParticipant(participant: Participant): Observable<Participant> {
     return Observable.create(observer => {
-      setTimeout(() => {
-        const index = this.hardCodeParticipants.findIndex(p => p.id === participant.id);
-        this.hardCodeParticipants[index] = participant;
-        console.log(this.hardCodeParticipants);
-        observer.next(participant);
-        observer.complete();
-      }, 500);
-    });
+      const index = this.hardCodeParticipants.findIndex(p => p.id === participant.id);
+      this.hardCodeParticipants[index] = participant;
+      console.log(this.hardCodeParticipants);
+      observer.next(participant);
+      observer.complete();
+    }).delay(500);
   }
 }
