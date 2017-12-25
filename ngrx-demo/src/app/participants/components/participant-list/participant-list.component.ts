@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { Participant } from '../../../../common';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-participant-list',
@@ -18,8 +19,8 @@ import { FormControl } from '@angular/forms';
 export class ParticipantsListComponent implements OnInit {
   constructor() {}
 
-  @Input() public participants: Participant[];
-  @Input() public loading: boolean;
+  @Input() public participants$: Observable<Participant[]>;
+  @Input() public loading$: Observable<boolean>;
   @Output() public deleteParticipants = new EventEmitter();
   @Output() public editParticipants = new EventEmitter();
 

@@ -11,28 +11,16 @@ import * as fromStore from '../../../store';
 })
 export class MeetUpComponent implements OnInit {
   constructor(private store: Store<fromStore.State>) {}
-  // constructor(private participantService: ParticipantsService) {}
-  // public loadingData = false;
-  public participants: Participant[];
-  ngOnInit() {
-    this.store.select(fromStore.getAllParticipants).subscribe(p => {
-      this.participants = p;
-    });
-    this.store.dispatch(new fromStore.ParticipantsFetchStartAction());
 
-    // this.loadingData = true;
-    // this.participantService.getParticipants().subscribe(p => {
-    //   this.participants = p;
-    //   this.loadingData = false;
-    // });
+  public participants$: Observable<Participant[]>;
+  public loadingData$: Observable<boolean>;
+  ngOnInit() {
+    this.store.dispatch(new fromStore.ParticipantsFetchStartAction());
+    this.participants$ = this.store.select(fromStore.getAllParticipants);
+    this.loadingData$ = this.store.select(fromStore.getParticipantsLoading);
   }
 
   onDeleteParticipant(participant: Participant) {
-    // console.log('delete participants');
-    // console.log(participant);
-    // this.participantService.deleteParticipant(participant).subscribe(p => {
-    //   console.log(p);
-    //   this.participants = p;
-    // });
+    this.store.dispatch(new fromStore.ParticipantsRemoveStartAction(participant.id.toString()));
   }
 }

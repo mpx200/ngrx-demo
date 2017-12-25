@@ -1,5 +1,5 @@
 <mat-list *ngIf="!loading" #part>
-  <mat-list-item *ngFor="let participant of participants">
+  <mat-list-item *ngFor="let participant of participants$ | async">
     <img matListAvatar [src]="'assets/images/' + participant.imageSrc">
     <div class="mat-list-option-content">
       <h3 matLine> {{participant.name}} {{participant.surname}} </h3>
@@ -15,5 +15,5 @@
   </mat-list-item>
 </mat-list>
 
-<mat-spinner *ngIf="loading" class="example-margin" [color]="'primary'">
+<mat-spinner *ngIf="loading$ | async" class="example-margin" [color]="'primary'">
 </mat-spinner>
