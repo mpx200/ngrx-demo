@@ -19,7 +19,7 @@ import {
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { metaReducers, reducers, ParticipantsEffects } from './store';
+import { metaReducers, reducers, ParticipantsEffects, RouterEffects } from './store';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { metaReducers, reducers, ParticipantsEffects } from './store';
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
-    EffectsModule.forRoot([ParticipantsEffects]),
+    EffectsModule.forRoot([ParticipantsEffects, RouterEffects]),
 
     NgRxMeetupCommonModule
   ],

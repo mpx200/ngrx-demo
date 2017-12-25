@@ -39,6 +39,46 @@ export function reducer(
         error: action.payload
       };
 
+    case ParticipantActionTypes.PARTICIPANTS_EDIT_START:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case ParticipantActionTypes.PARTICIPANTS_EDIT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        items: action.payload
+      };
+
+    case ParticipantActionTypes.PARTICIPANTS_EDIT_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
+
+
+      case ParticipantActionTypes.PARTICIPANTS_REMOVE_START:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case ParticipantActionTypes.PARTICIPANTS_REMOVE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        items: action.payload
+      };
+
+    case ParticipantActionTypes.PARTICIPANTS_REMOVE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
     default:
       return state;
   }

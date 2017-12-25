@@ -1,4 +1,3 @@
-// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from './../../environments/environment';
@@ -35,11 +34,10 @@ export class ParticipantsService {
   ];
 
   constructor() {}
-  // constructor(private http: HttpClient) {}
 
   public getParticipants(): Observable<Participant[]> {
     return Observable.create(observer => {
-      observer.next(this.hardCodeParticipants);
+      observer.next([...this.hardCodeParticipants]);
       observer.complete();
     }).delay(2000);
   }
@@ -48,13 +46,13 @@ export class ParticipantsService {
     participant: Participant
   ): Observable<Participant[]> {
     return Observable.create(observer => {
-      setTimeout(() => {
         const deletedIndex = this.hardCodeParticipants.indexOf(participant);
-        this.hardCodeParticipants.splice(deletedIndex, 1);
-        observer.next(this.hardCodeParticipants);
+        const newArray = [...this.hardCodeParticipants];
+        newArray.splice(deletedIndex, 1);
+       this.hardCodeParticipants = newArray;
+        observer.next(newArray);
         observer.complete();
-      }, 0);
-    });
+    }).delay(100);
   }
 
   public getParticipant(id: number): Observable<Participant> {
@@ -66,13 +64,17 @@ export class ParticipantsService {
   }
 
   public saveParticipant(participant: Participant): Observable<Participant> {
-    console.log(participant);
-    console.log(this.hardCodeParticipants);
     return Observable.create(observer => {
-      const index = this.hardCodeParticipants.findIndex(p => p.id === participant.id);
-      this.hardCodeParticipants[index] = participant;
-      console.log(this.hardCodeParticipants);
-      observer.next(participant);
+      const newList = [];
+      this.hardCodeParticipants.forEach(p => {
+        if (p.id === participant.id) {
+           newList.push(participant);
+        } else {
+          newList.push(p);
+        }
+      });
+      this.hardCodeParticipants = newList;
+      observer.next(newList);
       observer.complete();
     }).delay(500);
   }

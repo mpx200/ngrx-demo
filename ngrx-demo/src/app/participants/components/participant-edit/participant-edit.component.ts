@@ -37,9 +37,10 @@ export class ParticipantsEditComponent implements OnInit, OnDestroy {
       fromStore.getSelectedParticipant
     );
     this.selectedParticipant$.subscribe(p => {
-      this.selectedParticipant = p;
-      this.setValueForm(this.selectedParticipant);
-      console.log('vratio slektovanog');
+      if (p) {
+        this.selectedParticipant = p;
+        this.setValueForm(this.selectedParticipant);
+      }
     });
   }
 
@@ -48,7 +49,6 @@ export class ParticipantsEditComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required]],
       surname: ['', Validators.required],
       company: ['', Validators.required],
-      // imageSrc: new FormControl(''),
       location: ['', Validators.required]
     });
   }
@@ -58,22 +58,13 @@ export class ParticipantsEditComponent implements OnInit, OnDestroy {
       name: part.name,
       surname: part.surname,
       company: part.company,
-      // imageSrc: new FormControl(''),
       location: part.location
     });
   }
 
   onSubmit({ value, valid }: { value: Participant; valid: boolean }) {
-    // value.id = this.selectedParticipant.id;
-    // value.imageSrc = this.selectedParticipant.imageSrc;
-    // this.participantService.saveParticipant(value).subscribe(p => {
-    //   console.log(p);
-    //   console.log('edited');
-    //   this.router.navigate([`/meetup`]);
-    // });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+    value.id = this.selectedParticipant.id;
+    value.imageSrc = this.selectedParticipant.imageSrc;
+    this.store.dispatch(new fromStore.ParticipantsEditStartAction(value));
   }
 }

@@ -39,7 +39,7 @@ export class ParticipantsEditStartAction implements Action {
   public static of(payload: any) {
     return new ParticipantsEditStartAction(payload);
   }
-  constructor(public payload: any[]) {}
+  constructor(public payload: any) {}
 }
 
 export class ParticipantsEditSuccessAction implements Action {
@@ -48,7 +48,7 @@ export class ParticipantsEditSuccessAction implements Action {
     return new ParticipantsEditSuccessAction(payload);
   }
 
-  constructor(public payload: any[]) {}
+  constructor(public payload: any) {}
 }
 
 export class ParticipantsEditFailAction implements Action {
@@ -63,16 +63,18 @@ export class ParticipantsEditFailAction implements Action {
 export class ParticipantsRemoveStartAction implements Action {
   public type = ParticipantActionTypes.PARTICIPANTS_REMOVE_START;
 
-  constructor(public payload: string) {}
+  constructor(public payload: any) {}
 }
 
 export class ParticipantsRemoveSuccessAction implements Action {
   public type = ParticipantActionTypes.PARTICIPANTS_REMOVE_SUCCESS;
   public static of(payload: any) {
+    console.log('payload');
+    console.log(payload);
     return new ParticipantsRemoveSuccessAction(payload);
   }
 
-  constructor(public payload: string) {}
+  constructor(public payload: any) { }
 }
 
 export class ParticipantsRemoveFailAction implements Action {

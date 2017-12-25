@@ -1,4 +1,4 @@
-<mat-list *ngIf="!loading" #part>
+<mat-list *ngIf="!(loading$ | async)" #part>
   <mat-list-item *ngFor="let participant of participants$ | async">
     <img matListAvatar [src]="'assets/images/' + participant.imageSrc">
     <div class="mat-list-option-content">

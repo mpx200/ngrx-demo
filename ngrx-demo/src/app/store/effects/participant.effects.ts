@@ -46,6 +46,56 @@ export class ParticipantsEffects {
       })
     );
 
+  @Effect()
+  updateParticipant$ = this.actions$
+    .ofType(fromActions.ParticipantActionTypes.PARTICIPANTS_EDIT_START)
+    .pipe(
+      map((action: fromActions.ParticipantsEditStartAction) => action.payload),
+      switchMap(participant => {
+        return this.participantsService
+          .saveParticipant(participant)
+          .pipe(
+            map(part => new fromActions.ParticipantsEditSuccessAction(part)),
+            catchError(error =>
+              of(new fromActions.ParticipantsEditFailAction(error))
+            )
+          );
+      })
+    );
+
+  @Effect()
+  removeParticipant$ = this.actions$
+    .ofType(fromActions.ParticipantActionTypes.PARTICIPANTS_REMOVE_START)
+    .pipe(
+      map(
+        (action: fromActions.ParticipantsRemoveStartAction) => action.payload
+      ),
+      switchMap(part => {
+        return this.participantsService
+          .deleteParticipant(part)
+          .pipe(
+            map(list => new fromActions.ParticipantsRemoveSuccessAction(list)),
+            catchError(error =>
+              of(new fromActions.ParticipantsRemoveFailAction(error))
+            )
+          );
+      })
+    );
+
+  @Effect()
+  handleParticipantActionSuccess$ = this.actions$
+    .ofType(
+      fromActions.ParticipantActionTypes.PARTICIPANTS_EDIT_SUCCESS,
+      fromActions.ParticipantActionTypes.PARTICIPANTS_REMOVE_SUCCESS
+    )
+    .pipe(
+      map(participant => {
+        return new fromActions.Go({
+          path: ['/meetup']
+        });
+      })
+    );
+
   constructor(
     private actions$: Actions<{ type: any; payload: any }>,
     private participantsService: ParticipantsService
